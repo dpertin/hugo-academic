@@ -14,6 +14,23 @@
   {{ i18n "btn_preprint" }}
 </a>
 {{ end }}
+
+{{ $hal := "" }}
+{{ $resource := $page.Resources.GetMatch (printf "%s.hal" $page.File.ContentBaseName) }}
+{{ with $resource }}
+  {{ $hal = .RelPermalink }}
+{{ else }}
+  {{ if $page.Params.url_hal }}
+    {{ $hal = $page.Params.url_hal | relURL }}
+  {{ end }}
+{{ end }}
+
+{{ with $hal }}
+<a class="btn btn-outline-primary my-1 mr-1{{ if $is_list }} btn-sm{{end}}" href="{{ . }}" target="_blank" rel="noopener">
+  {{ i18n "btn_hal" }}
+</a>
+{{ end }}
+
 {{ $pdf := "" }}
 {{ $resource := $page.Resources.GetMatch (printf "%s.pdf" $page.File.ContentBaseName) }}
 {{ with $resource }}
