@@ -34,13 +34,6 @@
       {{ printf "<script src=\"%s\" integrity=\"%s\" crossorigin=\"anonymous\"></script>" (printf $js.leaflet.url $js.leaflet.version) $js.leaflet.sri | safeHTML }}
     {{ end }}
 
-    {{/* Initialise code highlighting. */}}
-    {{ if $scr.Get "highlight_enabled" }}
-    <script>const code_highlighting = true;</script>
-    {{ else }}
-    <script>const code_highlighting = false;</script>
-    {{ end }}
-
     {{/* Initialise default theme. */}}
     {{ if eq ($scr.Get "light") true }}
     <script>const isSiteThemeDark = false;</script>
